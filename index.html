@@ -62,13 +62,13 @@
                 mistake++;
               }
             }
-          }
-          if (mistake === word.length) {
-            alert("Неправильная буква. Попробуйте ещё.");
-            lives--;
-            alert("Осталось " + lives + " попыток.");
-          } else if (mistake < word.length) {
-            alert("Вы угадали букву.");
+            if (mistake === word.length) {
+              alert("Неправильная буква. Попробуйте ещё.");
+              lives--;
+              alert("Осталось " + lives + " попыток.");
+            } else if (mistake < word.length) {
+              alert("Вы угадали букву.");
+            }
           }
         }
         if (score >= 1000) {
