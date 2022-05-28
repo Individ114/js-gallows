@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="img">1</div>
+    <script>
+      var welcome = confirm("Хотите сыграть в игру Виселица?");
+      if (welcome) {
+        var words = ["дерево", "куб", "роль"];
+        var word = words[Math.floor(Math.random() * 3)];
+        var rezultate = [];
+
+        for (var i = 0; i < word.length; i++) {
+          rezultate[i] = " _";
+        }
+        alert("Отгадайте слово из " + word.length + " букв:" + rezultate + ".");
+
+        if (word.length === 6) {
+          alert(
+            "Подсказка: многолетнее растение с одревесневающим прямостоячим главным стеблем – стволом."
+          );
+        } else if (word.length === 3) {
+          alert(
+            "Подсказка: правильный многогранник, каждая грань которого представляет собой квадрат."
+          );
+        } else {
+          alert(
+            "Подсказка: литературный образ, созданный драматургом в пьесе — и соответственный сценический образ, воплощенный актером в спектакле."
+          );
+        }
+
+        var score = word.length;
+        var lives = 20;
+
+        alert("У вас " + lives + " попыток.");
+
+        while (score > 0 && lives > 0) {
+          var variant = prompt(
+            "Введите одну строчную букву: " + rezultate + "."
+          );
+          var mistake = 0;
+          if (variant === null) {
+            score += 1000;
+            break;
+          } else if (variant.length !== 1) {
+            alert("Одну букву!");
+          } else {
+            for (var j = 0; j < word.length; j++) {
+              if (
+                variant.toLowerCase() === word[j] &&
+                variant.toLowerCase() !== rezultate[j]
+              ) {
+                rezultate[j] = word[j];
+                score--;
+              } else {
+                mistake++;
+              }
+            }
+          }
+          if (mistake === word.length) {
+            alert("Неправильная буква. Попробуйте ещё.");
+            lives--;
+            alert("Осталось " + lives + " попыток.");
+          } else if (mistake < word.length) {
+            alert("Вы угадали букву.");
+          }
+        }
+        if (score >= 1000) {
+          alert("Вы вышли из игры.");
+        } else {
+          alert("Вы угадали слово: " + rezultate.join("") + ". Поздравляем!");
+        }
+      } else {
+        alert("Вы вышли из игры.");
+      }
+    </script>
+  </body>
+</html>
